@@ -1,0 +1,15 @@
+.idea
+.idea/*
+*.iml
+out
+
+*.class
+
+tags
+test.sh
+.luarc.json
+nvim
+
+spell/
+lazy-lock.json
+*.bak
