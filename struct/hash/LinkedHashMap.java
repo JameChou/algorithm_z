@@ -31,7 +31,6 @@ public class LinkedHashMap<K, V> {
         }
 
         public Node() {
-
         }
 
     }
@@ -45,8 +44,11 @@ public class LinkedHashMap<K, V> {
 
     public LinkedHashMap() {
         map = new HashMap<>();
-        head = null;
-        tail = null;
+        head = new Node<K, V>(null, null);
+        tail = new Node<K, V>(null, null);
+
+        head.next = tail;
+        tail.prev = head;
     }
 
     /**
@@ -60,29 +62,47 @@ public class LinkedHashMap<K, V> {
             throw new IllegalArgumentException();
         }
 
+        // 现在表中已经有这个节点了，只需要去更新一下这个节点的value值
+        if (map.containsKey(key)) {
+
+            Node<K, V> node = map.get(key);
+            node.value = value;
+
+            return;
+        }
+
         Node<K, V> node = new Node<>(key, value);
-        if (head == null) {
-            head = node;
-            map.put(key, node);
-            return;
-        }
-
-        if (tail == null) {
-            head.next = node;
-            node.prev = head;
-            tail = node;
-            map.put(key, node);
-            return;
-        }
-
-        node.prev = tail;
-        tail.next = node;
-        tail = node;
+        // 把节点也要添加到linkedlist中去
+        add2list(node);
+        // 把节点放至到表中
         map.put(key, node);
     }
 
-    private Node<K, V> getNode(K key) {
-        return map.get(key);
+    /**
+     * 将节点加入到整个链表的尾部
+     *
+     * @param node 需要添加的节点
+     */
+    private void add2list(Node<K, V> node) {
+
+        node.next = tail;
+        node.prev = tail.prev;
+
+        tail.prev.next = node;
+        tail.prev = node;
+    }
+
+    /**
+     * 将某个节点从链表中删除
+     *
+     * @param node 需要移除的节点
+     */
+    private void removeFromList(Node<K, V> node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+
+        node.next = null;
+        node.prev = null;
     }
 
     /**
@@ -95,37 +115,16 @@ public class LinkedHashMap<K, V> {
             throw new IllegalArgumentException();
         }
 
-        Node<K, V> node = getNode(key);
-        if (node == null) {
-            throw new IllegalArgumentException();
+        if (!map.containsKey(key)) {
+            return;
         }
 
+        Node<K, V> node = map.get(key);
+
+        // 从表以及链中删除
+        removeFromList(node);
         map.remove(key);
-        // 如果删除的这个节点是记录的头节点
-        if (node == head) {
-            head = node.next;
-            if (node.next != null) {
-                node.next.prev = null;
-                node.next = null;
-            }
 
-            return;
-        }
-
-        if (node == tail) {
-            tail = node.prev;
-            if (node.prev != null) {
-                node.prev.next = null;
-                node.prev = null;
-            }
-
-            return;
-        }
-
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
-        node.next = null;
-        node.prev = null;
     }
 
     /**
@@ -153,11 +152,8 @@ public class LinkedHashMap<K, V> {
 
         List<V> values = new ArrayList<>();
 
-        Node<K, V> temp = head;
-        // 对现在这个链表进行遍历按顺序拿到所有的节点
-        while (temp == null) {
-            values.add(temp.value);
-            temp = temp.next;
+        for (Node<K, V> node = head.next; node != tail; node = node.next) {
+            values.add(node.value);
         }
 
         return values;
@@ -170,14 +166,12 @@ public class LinkedHashMap<K, V> {
 
         List<K> keyList = new ArrayList<>();
 
-        Node<K, V> temp = head;
-        // 对现在这个链表进行遍历按顺序拿到所有的节点
-        while (temp != null) {
-            keyList.add(temp.key);
-            temp = temp.next;
+        for (Node<K, V> node = head.next; node != tail; node = node.next) {
+            keyList.add(node.key);
         }
 
         return keyList;
+
     }
 
     public static void main(String[] args) {
