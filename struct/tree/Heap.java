@@ -61,13 +61,14 @@ public class Heap {
      * @param 需要入堆的元素
      */
     public void push(int val) {
-        // 如果现在堆已经到达最大值的情况下抛出Exception，只是简单实现正常的情况下，我们可以进行扩容操作
-        if (size() == this.heap.length) {
+        // 堆中的元素已经满了则向外抛出Exception
+        if (size == heap.length) {
             throw new IndexOutOfBoundsException();
         }
 
-        this.heap[size - 1] = val;
-        heapfiy(size - 1);
+        heap[size] = val;
+        size++;
+        swim(size - 1);
     }
 
     /**
@@ -87,18 +88,19 @@ public class Heap {
      *
      * @param i 需要上浮的元素索引
      */
-    private void heapfiy(int i) {
-        while (true) {
-            int p = parent(i);
-            if (p < 0)
-                return;
-            if (heap[i] > heap[p]) {
-                swap(i, p);
-                i = p;
-            } else {
+    private void swim(int i) {
+        // 上浮的跳出条件是什么？
+        int p = parent(i);
+        while (heap[i] > heap[p]) {
+            if (p == 0) {
+                if (heap[i] > heap[0]) {
+                    swap(i, p);
+                }
                 break;
             }
-
+            swap(i, p);
+            i = p;
+            p = parent(i);
         }
     }
 
@@ -116,52 +118,60 @@ public class Heap {
         swap(0, size() - 1);
 
         Integer rtnValue = heap[size() - 1];
-        heap[size() - 1] = null;
 
         size--;
         sink(0);
-
         // 交换完了之后，需要再下潜重新将堆进行排序
 
         return rtnValue;
     }
 
+    /**
+     * 下沉操作，我们需要对现在这个节点下面的所有子节点进行比较操作
+     * 如果下面的元素有比自己大的，则进行交换，直到交换到没有数据为止
+     */
+    private void sink(int i) {
+        int left = left(i);
+        int right = right(i);
+
+        while (left < size || right < size) {
+            // 如果小于左节点的话，下沉至左节点位置
+            if (left < size && heap[i] < heap[left]) {
+                swap(i, left);
+                i = left;
+                // 如果小于右节点，下沉至右节点位置
+            } else if (right < size && heap[i] < heap[right]) {
+                swap(i, right);
+                i = right;
+            } else {
+                // 都不符合则跳出当前循环
+                break;
+            }
+
+            left = left(i);
+            right = right(i);
+        }
+    }
+
     public Integer peek() {
+        if (size == 0) {
+            throw new IndexOutOfBoundsException();
+        }
         return heap[0];
     }
 
-    private void sink(int i) {
-
-        // i = (size - 3) / 2
-        while (i <= (this.size - 3) / 2) {
-            int left = left(i);
-            int right = right(i);
-
-            if (heap[left] == null && heap[right] == null) {
-                break;
-            } else {
-                if (heap[left] != null && heap[right] != null && heap[i] >= heap[left] && heap[i] >= heap[right]) {
-                    break;
-                } else {
-                    if (heap[left] != null) {
-                        if (heap[left] > heap[i]) {
-                            swap(i, left);
-                            i = left;
-                        }
-                    } else if (heap[right] != null) {
-                        if (heap[right] > heap[i]) {
-                            swap(i, right);
-                            i = right;
-                        }
-                    }
-                }
-            }
-
-        }
-
-    }
-
     public static void main(String[] args) {
+        Heap pq = new Heap(5);
+        pq.push(3);
+        pq.push(2);
+        pq.push(1);
+        pq.push(5);
+        pq.push(4);
 
+        System.out.println(pq.pop()); // 1
+        System.out.println(pq.pop()); // 2
+        System.out.println(pq.pop()); // 3
+        System.out.println(pq.pop()); // 4
+        System.out.println(pq.pop()); // 5
     }
 }
