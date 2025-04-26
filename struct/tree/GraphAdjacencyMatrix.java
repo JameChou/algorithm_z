@@ -25,7 +25,6 @@ public class GraphAdjacencyMatrix {
         for (int arr[] : matrix) {
 
         }
-
     }
 
     /**
