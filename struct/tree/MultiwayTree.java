@@ -26,6 +26,9 @@ public class MultiwayTree<V> {
 
     /**
      * 深度优先遍历
+     *
+     * @root 根节点
+     *
      */
     public void dfs(Node<V> root) {
         if (root == null) {
@@ -49,6 +52,10 @@ public class MultiwayTree<V> {
 
     /**
      * 广度优先遍历
+     *
+     * 这是第一种写法，无法记录节点的深度
+     * 
+     * @root 根节点对象
      */
     public void bfs(Node<V> root) {
         if (root == null) {
@@ -56,7 +63,7 @@ public class MultiwayTree<V> {
         }
 
         Queue<Node<V>> queue = new LinkedList<>();
-        queue.add(root);
+        queue.offer(root);
         while (!queue.isEmpty()) {
             Node<V> node = queue.poll();
             System.out.print(node.val + " ");
@@ -66,9 +73,45 @@ public class MultiwayTree<V> {
             }
 
             for (int i = 0; i < node.children.size(); i++) {
-                queue.add(node.children.get(i));
+                queue.offer(node.children.get(i));
             }
         }
+    }
+
+    /**
+     * 层序遍历的第二种写法，主要的目的是记录下深度信息
+     *
+     * @root 根节点
+     */
+    public void bfs2(Node<V> root) {
+        if (root == null) {
+            return;
+        }
+
+        Queue<Node<V>> queue = new LinkedList<>();
+        queue.offer(root);
+
+        int depth = 1;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+
+            // 每一层的先处理掉
+            for (int i = 0; i < size; i++) {
+                Node<V> node = queue.poll();
+
+                System.out.println("depth == " + depth + ", val == " + node.val);
+
+                if (node.children == null || node.children.size() == 0) {
+                    continue;
+                }
+                for (Node<V> n : node.children) {
+                    queue.offer(n);
+                }
+            }
+
+            depth++;
+        }
+
     }
 
     public static void main(String[] args) {
@@ -102,6 +145,8 @@ public class MultiwayTree<V> {
         System.out.println();
         new MultiwayTree<Integer>().bfs(root);
 
+        System.out.println();
+        new MultiwayTree<Integer>().bfs2(root);
     }
 
 }

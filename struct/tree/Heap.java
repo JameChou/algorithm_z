@@ -5,6 +5,10 @@ public class Heap {
     private Integer heap[];
     private static final int DEFAULT_SIZE = 50;
 
+    /**
+     * 这里为构造函数，我们可以指定堆的大小，也可以不指定大小
+     * 这个大小关联于 DEFAULT_SIZE这个静态全局变量。
+     */
     public Heap(int size) {
         this.size = 0;
         if (size > 0) {
@@ -21,6 +25,7 @@ public class Heap {
 
     private int size;
 
+    // TODO: 这里还是有问题的，获得现在这个堆的大小，不应该直接返回堆现在数组的大小?
     public int size() {
         return size;
     }
