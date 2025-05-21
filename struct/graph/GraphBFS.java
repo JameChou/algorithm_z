@@ -46,17 +46,40 @@ public class GraphBFS {
      * 方法二
      * 
      * 这个方法主要是用于对图进行广度优先的遍历方式同时可以记录用到的步数。
+     * 
+     * @param graph 图对象
+     * @param s     开始遍历的节点
      */
     public void method2(Graph graph, int s) {
         boolean visited[] = new boolean[graph.size()];
         Queue<Integer> queue = new LinkedList<>();
 
+        visited[s] = true;
         queue.offer(s);
 
-    }
+        // 注意这里与多叉树之间的区别，多叉树中设置的为depth = 1，这里为0
+        int step = 0;
 
-    public void method3() {
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int vertex = queue.poll();
 
+                System.out.print("vertex: " + vertex + ", step-> " + step);
+
+                for (Graph.Edge e : graph.neighbors(vertex)) {
+                    if (visited[e.to]) {
+                        continue;
+                    }
+
+                    queue.offer(e.to);
+                    visited[e.to] = true;
+                }
+
+            }
+
+            step++;
+        }
     }
 
     public static void main(String[] args) {

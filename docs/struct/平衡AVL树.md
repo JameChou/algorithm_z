@@ -1,4 +1,4 @@
-## AVL树
+# AVL树
 
 首先来看一下什么是二叉搜索树，这个二叉树的左侧节点是比根节点小的，右侧的子节点比根节点要大。
 
@@ -14,7 +14,7 @@
 
 那么如何去解决这个问题呢，这就是本篇内容所要探索的。
 
-### 什么是AVL树
+## 什么是AVL树
 首先我们现在操作的这个树前提必须是一个二叉搜索树。
 
 那么在二叉搜索树的前提下，满足条件:**所有的结点的(左子树高度-右子树高度)的绝对值 <= 1** 即AVL树。
@@ -29,7 +29,7 @@
 
 <img src="./images/avl_need_to_roate.png" style="zoom:33%;" />
 
-#### 树的高度
+### 树的高度
 树的高度是指一个节点到子树的最大路径。`Math.max(node.left.height, node.right.height) + 1` <++>
 
 ```java
@@ -48,7 +48,7 @@ private void updateHeight(Node node) {
 
 如果一个节点就是叶子节点，那么这个树的高度是`0` ，如果节点是`None` 则这个节点的高度为`-1` 。
 
-#### 平衡因子
+### 平衡因子
 在上面的说明中，我们已经讲解了什么是*平衡因子* ，下面的代码展示了如何获得一个节点的平衡因子。
 
 ```java
@@ -57,7 +57,7 @@ private int balanceFactor(Node node) {
 }
 ```
 
-### 如何去平衡二叉树
+## 如何去平衡二叉树
 
 总共有两种方式一种是`左旋` 另一种则是右旋`右旋` 。
 
@@ -65,7 +65,7 @@ private int balanceFactor(Node node) {
 
 左旋之后这两个树是等价的，中序遍历都是有序的
 
-### 左旋规则
+## 左旋规则
 左旋即：**向左旋转，冲突的左孩变右孩**。
 
 
@@ -103,7 +103,7 @@ private Node leftRotate(Node node) {
 }
 ```
 
-### 右旋规则
+## 右旋规则
 
 右旋即：**向右旋转，冲突的右孩变左孩**
 
@@ -132,9 +132,9 @@ private Node rightRotate(Node node) {
 }
 ```
 
-### 总共有几种情况
+## 总共有几种情况
 
-#### LL型
+### LL型
 
 <img src="./images/avl_ll_type.png" alt="LL型" style="zoom:33%;" />
 
@@ -169,7 +169,7 @@ private Node rotate(Node node) {
 
 上面的代码展现了对于`LL` 型的处理。只需要对失衡的节点右旋即可。
 
-#### RR型
+### RR型
 
 <img src="./images/avl_rr_type.png" alt="RR型" style="zoom:33%;" />
 
@@ -203,7 +203,7 @@ private Node rotate(Node node) {
 
 上面的代码表示了，如何去处理RR型，我们只需要对失衡的节点左旋即可。
 
-#### LR型
+### LR型
 
 <img src="./images/avl_lr_type.png" alt="LR型" style="zoom:33%;" />
 
@@ -243,7 +243,7 @@ private Node rotate(Node node) {
 
 对于LR型，我们只需要对失衡的左节点先左旋，然后当失衡节点右旋即可。
 
-#### RL型
+### RL型
 
 <img src="./images/avl_rl_type.png" alt="RL型" style="zoom:33%;" />
 
@@ -280,7 +280,7 @@ private Node rotate(Node node) {
 
 对于RL型，我们只需要对失衡节点的右子节点右旋，然后再对失衡节点左旋。
 
-#### 四种情况 LL、RR、LR、RL
+### 四种情况 LL、RR、LR、RL
 
 > [!important]
 > 表
@@ -295,7 +295,7 @@ private Node rotate(Node node) {
 <img src="./images/avl_judge_type_diagram.png" alt="avl树判断流程" style="zoom:33%;" />
 
 
-### 插入
+## 插入
 我们在正常插入的时候如果遇到有多个节点平衡因子都不平衡的情况时。
 
 <img src="./images/avl_serval_nodes_need2roate.png" alt="AVL树可能有多个节点都需要进行调整" style="zoom:33%;" />
@@ -334,7 +334,7 @@ private Node insertHelper(Node node, int val) {
 
 这里的重点是:递归里会返回新的旋转节点，这时候就会更新新的节点。`node.right = insertHelper(node.right, val)` 和`node.left = insertHelper(node.left, val)` 。
 
-### 删除
+## 删除
 当我们去删除AVL树中的节点时，他的操作与普通BST树是一样的，只不过当我们删除完了之后，还需要对父节点进行检查，查看是否有失衡的情况，有的话就进行调整。
 
 ```java

@@ -1,15 +1,15 @@
-## Trie树
+# Trie树
 
 Trie树就是多叉树结构的延伸，是一种针对字符串进行特殊优化的数据结构。
 
 Trie树在处理字符串相关操作时有诸多的优势，比如节省公共字符串前缀的内存空间、方便处理前缀操作、支持通配符匹配等。
 
-### Trie树的主要应用场景
+## Trie树的主要应用场景
 
 Trie树是一种针对字符串有特殊优化的数据结构，这也许它又被叫做字典的原因。Trie树针对字符串的处理有若干优势。
 
 
-#### 节约存储空间
+### 节约存储空间
 这里我们先使用`HashMap`来对比，比如下面的代码，我们来存储几个键值对:
 ```java
 Map<String, Integer> map = new HashMap<>();
@@ -34,7 +34,7 @@ Trie树底层并不会重复存储公共前缀，所以只需要`apple` 这5个�
 
 这个例子的数据量并不是很大，所以还不是很明显，但是如果数据量很大的情况下，那么TrieMap可以节省大量的存储空间。
 
-#### 方便处理前缀操作
+### 方便处理前缀操作
 ```java
 // Trie 树的键类型固定为 String 类型，值类型可以是泛型
 TrieMap<Integer> map = new TrieMap<>();
@@ -63,7 +63,7 @@ System.out.println(map.keysWithPrefix("th")); // ["that", "the", "them"]
 
 上面的这几个操作，使用HashMap或TreeMap能做到吗？一般来说只能通过强行遍历的方式，然后一个个比较字符串得到前缀等，时间复杂度会非常的高。
 
-#### 可以使用通配符
+### 可以使用通配符
 ```java
 // Trie 树的键类型固定为 String 类型，值类型可以是泛型
 // 支持通配符匹配，"." 可以匹配任意一个字符
@@ -86,7 +86,7 @@ System.out.println(map.hasKeyWithPattern("z.o")); // false
 
 上面的例子是我们可以使用通配符。这个功能用HashMap或者TreeMap肯定做不到的。
 
-#### 可以按照字典序遍历键
+### 可以按照字典序遍历键
 ```java
 // Trie 树的键类型固定为 String 类型，值类型可以是泛型
 TrieMap<Integer> map = new TrieMap<>();
@@ -103,7 +103,7 @@ System.out.println(map.keys()); // ["apple", "that", "the", "them", "zip"]
 
 这个功能`TreeMap` 也能做到，但是HashMap就做不到了。
 
-### Trie树的基本结构
+## Trie树的基本结构
 Trie树本质上就是一棵从二叉树衍生出来的多叉树。
 
 二叉树的节点代码实现是下面的这样的:
@@ -162,7 +162,7 @@ class TrieNode<V> {
 
 ![TrieMap的数据储存结构图](./images/trie-map-detail.jpeg) 
 
-### TrieMap API
+## TrieMap API
 下面的这个是一般TrieMap的方法列表:
 
 ```java
