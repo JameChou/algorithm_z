@@ -13,3 +13,9 @@ nvim
 spell/
 lazy-lock.json
 *.bak
+submission/
+submission/*
+.settings/
+
+.project
+.classpath
