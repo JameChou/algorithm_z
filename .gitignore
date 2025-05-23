@@ -15,7 +15,10 @@ lazy-lock.json
 *.bak
 submission/
 submission/*
+solution/
 .settings/
 
 .project
 .classpath
+target/
+target/*
