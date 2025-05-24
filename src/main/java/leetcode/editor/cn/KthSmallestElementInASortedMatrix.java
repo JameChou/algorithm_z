@@ -23,38 +23,31 @@ import leetcode.editor.common.*;
  */
 public class KthSmallestElementInASortedMatrix {
     // leetcode submit region begin(Prohibit modification and deletion)
-    class State {
-        int val;
-        int index;
-        int matrixIndex;
-
-        public State(int val, int index, int matrixIndex) {
-            this.val = val;
-            this.index = index;
-            this.matrixIndex = matrixIndex;
-        }
-    }
-
     class Solution {
         public int kthSmallest(int[][] matrix, int k) {
-            PriorityQueue<State> queue = new PriorityQueue<>(matrix.length, (a, b) -> a.val - b.val);
+
+            // 使用堆去处理
+            // 这里存放的一维数组长度为三，分别存储着实际值、所在行、所在列
+            PriorityQueue<int[]> queue = new PriorityQueue<>(k, (a, b) -> a[0] - b[0]);
+
             for (int i = 0; i < matrix.length; i++) {
-                State state = new State(matrix[i][0], 0, i);
-                queue.offer(state);
+                queue.offer(new int[] { matrix[i][0], i, 0 });
             }
-            int index = 0;
+
             int result = -1;
+            int index = k;
 
-            while (!queue.isEmpty() && index < k) {
-                State cur = queue.poll();
-                result = cur.val;
-                int curIndex = cur.index;
-                if ((curIndex + 1) < matrix.length) {
-                    queue.offer(new State(matrix[cur.matrixIndex][curIndex + 1], curIndex + 1, cur.matrixIndex));
+            while (!queue.isEmpty() && index > 0) {
+                int[] cur = queue.poll();
+                result = cur[0];
+
+                index--;
+                if (cur[2] + 1 >= matrix.length) {
+                    continue;
                 }
-                index++;
-            }
 
+                queue.add(new int[] { matrix[cur[1]][cur[2] + 1], cur[1], cur[2] + 1 });
+            }
             return result;
         }
 
