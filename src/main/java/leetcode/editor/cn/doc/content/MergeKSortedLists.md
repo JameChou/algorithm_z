@@ -98,8 +98,7 @@
 // 本代码的正确性已通过力扣验证，如有疑问，可以对照 java 代码查看。
 
 // 用分治算法合并 k 个有序链表
-class Solu	Memory Usage:43.7 MB, less than 36.81% of Java online submissions.
-tion {
+class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         if (lists.empty()) {
@@ -401,8 +400,17 @@ function mergeTwoLists(l1, l2) {
 </div></div>
 </div></div>
 
-<hr /><details open hint-container details><summary style="font-size: medium"><strong>🌟🌟 算法可视化 🌟🌟</strong></summary><div id="data_merge-k-sorted-lists"  category="leetcode" ></div><div class="resizable aspect-ratio-container" style="height: 100%;">
+<hr /><details open hint-container details><summary style="font-size: medium"><strong>🌈🌈 算法可视化 🌈🌈</strong></summary><div id="data_merge-k-sorted-lists"  category="leetcode" ></div><div class="resizable aspect-ratio-container" style="height: 100%;">
 <div id="iframe_merge-k-sorted-lists"></div></div>
+</details><hr /><br />
+
+</div>
+</details>
+</div>
+
+
+
+s"></div></div>
 </details><hr /><br />
 
 </div>

@@ -18,25 +18,18 @@ public class MiddleOfTheLinkedList {
      * }
      */
     class Solution {
+        // 使用快慢指针的方式去找到中间节点
         public ListNode middleNode(ListNode head) {
-            if (head == null) {
-                return null;
-            }
-            int length = 0;
-            ListNode p = head;
+            ListNode slow = head;
+            ListNode fast = head;
 
-            while (p != null) {
-                length += 1;
-                p = p.next;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                // 这里会抛一个null exception的吧?
+                fast = fast.next.next;
             }
 
-            int rtnIndex = length / 2 + 1;
-            p = head;
-            for (int i = 0; i < rtnIndex - 1; i++) {
-                p = p.next;
-            }
-
-            return p;
+            return slow;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)
@@ -45,8 +38,9 @@ public class MiddleOfTheLinkedList {
         Solution solution = new MiddleOfTheLinkedList().new Solution();
         // put your test code here
         // int[] nums = { 1, 2, 3, 4, 5 };
-        // int[] nums = { 1, 2, 3, 4, 5, 6 };
-        int[] nums = { 1, 2 };
+        int[] nums = { 1, 2, 3, 4, 5, 6 };
+        // int[] nums = { 1, 2 };
+        // int[] nums = { 1 };
         ListNode head = ListNode.createHead(nums);
         ListNode result = solution.middleNode(head);
         ListNode.print(result);
