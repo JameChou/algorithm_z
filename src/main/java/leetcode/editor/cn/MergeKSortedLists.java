@@ -29,6 +29,7 @@ public class MergeKSortedLists {
             PriorityQueue<ListNode> queue = new PriorityQueue<>(3, (a, b) -> a.val - b.val);
             for (ListNode node : lists) {
                 if (node != null) {
+                    // push 
                     queue.offer(node);
                 }
             }

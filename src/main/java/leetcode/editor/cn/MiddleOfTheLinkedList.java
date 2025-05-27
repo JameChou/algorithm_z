@@ -23,6 +23,7 @@ public class MiddleOfTheLinkedList {
             ListNode slow = head;
             ListNode fast = head;
 
+            // 下面的疑问不需要去管，因为这里我们已经对fast.next != null进行判断了
             while (fast != null && fast.next != null) {
                 slow = slow.next;
                 // 这里会抛一个null exception的吧?
