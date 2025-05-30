@@ -4,13 +4,13 @@
 
 可以参考下面的图:
 
-<img src="./images/avl_tree.png" alt="avl树" style="zoom: 33%;" />
+<img src="../images/avl_tree.png" alt="avl树" style="zoom: 33%;" />
 
  
 
 但是有时候会出现一种情况就是插入的树值是排序好的，那么这个二叉搜索树则会退化成一个链表。这时候插入或者去查找某一个元素时间复杂度会退化成为$O(N)$。
 
-<img src="./images/avl_change_to_linkedlist.png" alt="失衡的二叉搜索树" style="zoom: 33%;" />
+<img src="../images/avl_change_to_linkedlist.png" alt="失衡的二叉搜索树" style="zoom: 33%;" />
 
 那么如何去解决这个问题呢，这就是本篇内容所要探索的。
 
@@ -23,11 +23,11 @@
 
 现在我们看两个例子:
 
-<img src="./images/avl_correct.png" alt="合法的AVL树" style="zoom:33%;" />
+<img src="../images/avl_correct.png" alt="合法的AVL树" style="zoom:33%;" />
 
 上面的图，我们以`10` 这个节点为例，其左子树的高度为`2` ，右子树高度为`2` 所以，这个结点的平衡因子为`0` ，包括其他的结点也是符合这个要求的。
 
-<img src="./images/avl_need_to_roate.png" style="zoom:33%;" />
+<img src="../images/avl_need_to_roate.png" style="zoom:33%;" />
 
 ### 树的高度
 树的高度是指一个节点到子树的最大路径。`Math.max(node.left.height, node.right.height) + 1` <++>
@@ -61,7 +61,7 @@ private int balanceFactor(Node node) {
 
 总共有两种方式一种是`左旋` 另一种则是右旋`右旋` 。
 
-<img src="./images/avl_left_roate_before.png" alt="需要左旋的树" style="zoom:33%;" /><img src="./images/avl_left_roate_after.png" alt="左旋之后的树" style="zoom:33%;" />
+<img src="../images/avl_left_roate_before.png" alt="需要左旋的树" style="zoom:33%;" /><img src="../images/avl_left_roate_after.png" alt="左旋之后的树" style="zoom:33%;" />
 
 左旋之后这两个树是等价的，中序遍历都是有序的
 
@@ -69,9 +69,9 @@ private int balanceFactor(Node node) {
 左旋即：**向左旋转，冲突的左孩变右孩**。
 
 
-<img src="./images/avl_left_roate_rule_1.png" alt="左旋规则_未旋转前" style="zoom:33%;" />
+<img src="../images/avl_left_roate_rule_1.png" alt="左旋规则_未旋转前" style="zoom:33%;" />
 
-<img src="./images/avl_left_roate_rule_2.png" alt="左旋规则_旋转后" style="zoom:33%;" />
+<img src="../images/avl_left_roate_rule_2.png" alt="左旋规则_旋转后" style="zoom:33%;" />
 
 **关键点** :
 1. **获得旋转节点的子节点**: `Node child = node.right` 也即这个节点的右孩。
@@ -107,9 +107,9 @@ private Node leftRotate(Node node) {
 
 右旋即：**向右旋转，冲突的右孩变左孩**
 
-<img src="./images/avl_right_roate_rule1.png" alt="右旋规则_未旋转前" style="zoom:33%;" />
+<img src="../images/avl_right_roate_rule1.png" alt="右旋规则_未旋转前" style="zoom:33%;" />
 
-<img src="./images/avl_right_roate_rule_2.png" alt="右旋规则_旋转后" style="zoom:33%;" />
+<img src="../images/avl_right_roate_rule_2.png" alt="右旋规则_旋转后" style="zoom:33%;" />
 
 这里的处理跟上面的左旋是类似的，需要注意更新是哪些节点指针。
 
@@ -136,7 +136,7 @@ private Node rightRotate(Node node) {
 
 ### LL型
 
-<img src="./images/avl_ll_type.png" alt="LL型" style="zoom:33%;" />
+<img src="../images/avl_ll_type.png" alt="LL型" style="zoom:33%;" />
 
 如上图所示，假如现在我们插入`3` 这个节点，那么`14` 这个节点*平衡因子* 就为`2` 了，那么就是失衡的状态。而插入的这个节点呢又在这个失衡因子的左子树的左节点上，所以我们称这种情况也叫**LL** 型。
 
@@ -146,7 +146,7 @@ private Node rightRotate(Node node) {
 
 那么如何去处理这种*LL* 型呢，使得这棵树重新达到平衡的状态？
 
-<img src="./images/avl_ll_roate.png" alt="LL旋转处理重新达到平衡" style="zoom:33%;" />
+<img src="../images/avl_ll_roate.png" alt="LL旋转处理重新达到平衡" style="zoom:33%;" />
 
 从上面的图可知，我们只需要对**失衡的结点做出右旋的操作** 即可。
 ```java
@@ -171,7 +171,7 @@ private Node rotate(Node node) {
 
 ### RR型
 
-<img src="./images/avl_rr_type.png" alt="RR型" style="zoom:33%;" />
+<img src="../images/avl_rr_type.png" alt="RR型" style="zoom:33%;" />
 
 如上图所示，假如现在我们插入`17` 这个节点，那么`5` 这个节点*平衡因子* 就为`-2` 了，那么就是失衡状态。而插入的这个节点在失衡因子的右子树的右节点上，我们称这种情况为**RR** 型。
 
@@ -179,7 +179,7 @@ private Node rotate(Node node) {
 * 失衡节点: **平衡因子= -2** 
 * 失衡节点的右孩子: **平衡因子= -1** 
 
-<img src="./images/avl_rr_roate.png" alt="RR型右旋处理重新达到平衡" style="zoom:33%;" />
+<img src="../images/avl_rr_roate.png" alt="RR型右旋处理重新达到平衡" style="zoom:33%;" />
 
 如上图所示，我们只需要对**失衡的节点进行右旋操作** 即可。
 
@@ -205,7 +205,7 @@ private Node rotate(Node node) {
 
 ### LR型
 
-<img src="./images/avl_lr_type.png" alt="LR型" style="zoom:33%;" />
+<img src="../images/avl_lr_type.png" alt="LR型" style="zoom:33%;" />
 
 如上图所示，当我们插入的节点`6` 时，`9` 这个节点失衡了，这个节点的平衡因子是`2` 而，其左节点的平衡因子为`-1` ，这个新插入的节点是在右子树里。我们称这种情况为**LR** 型。
 
@@ -213,9 +213,9 @@ private Node rotate(Node node) {
 * 失衡节点: **平衡因子 = 2**
 * 失衡节点的左孩子: **平衡因子 = -1**
 
-<img src="./images/avl_lr_roate_step1.png" alt="先对左孩子进行左旋操作" style="zoom:33%;" />
+<img src="../images/avl_lr_roate_step1.png" alt="先对左孩子进行左旋操作" style="zoom:33%;" />
 
-<img src="./images/avl_lr_roate_step2.png" alt="再对失衡节点进行右旋操作" style="zoom:33%;" />
+<img src="../images/avl_lr_roate_step2.png" alt="再对失衡节点进行右旋操作" style="zoom:33%;" />
 
 如上面两图所示:我们需要先对**失衡节点为的左孩子进行左旋操作，然后再对失衡节点进行右旋操作。**
 
@@ -245,7 +245,7 @@ private Node rotate(Node node) {
 
 ### RL型
 
-<img src="./images/avl_rl_type.png" alt="RL型" style="zoom:33%;" />
+<img src="../images/avl_rl_type.png" alt="RL型" style="zoom:33%;" />
 
 如上图所示，当我们插入的节点`8` 时，`5` 这个节点就失衡了，这个节点的平衡因子为`-2` ，而其右节点的平衡因子为`1` 时，这个新插入的节点在右子左子树里，我们称这种情况为**RL** 型。
 
@@ -253,9 +253,9 @@ private Node rotate(Node node) {
 * 失衡节点: **平衡因子 = -2**
 * 失衡节点的右孩子: **平衡因子 = -1**
 
-<img src="./images/avl_rl_roate_step1.png" alt="RL型先右旋右孩子" style="zoom:33%;" />
+<img src="../images/avl_rl_roate_step1.png" alt="RL型先右旋右孩子" style="zoom:33%;" />
 
-<img src="./images/avl_rl_roate_step2.png" alt="RL型失衡节点左旋" style="zoom:33%;" />
+<img src="../images/avl_rl_roate_step2.png" alt="RL型失衡节点左旋" style="zoom:33%;" />
 
 ```java
 // 旋转，需要考虑的是4种情况LL RR LR RL
@@ -292,13 +292,13 @@ private Node rotate(Node node) {
 | LR | 失衡节点: **平衡因子 = 2**<br/>失衡节点的左孩子: **平衡因子= -1**  | 左旋左孩子, 然后右旋 |
 | RL | 失衡节点: **平衡因子 = -2**<br/>失衡节点的右孩子: **平衡因子= 1**  | 右旋右孩子, 然后左旋 |
 
-<img src="./images/avl_judge_type_diagram.png" alt="avl树判断流程" style="zoom:33%;" />
+<img src="../images/avl_judge_type_diagram.png" alt="avl树判断流程" style="zoom:33%;" />
 
 
 ## 插入
 我们在正常插入的时候如果遇到有多个节点平衡因子都不平衡的情况时。
 
-<img src="./images/avl_serval_nodes_need2roate.png" alt="AVL树可能有多个节点都需要进行调整" style="zoom:33%;" />
+<img src="../images/avl_serval_nodes_need2roate.png" alt="AVL树可能有多个节点都需要进行调整" style="zoom:33%;" />
 
 如上图所示，这个棵树中插入了一个新的节点`9` ，这时候AVL树有多个节点都同出现了不平衡的情况,`3` 和`6` ，我们这时只需要调整距离9最近的失衡结点就可以了。
 

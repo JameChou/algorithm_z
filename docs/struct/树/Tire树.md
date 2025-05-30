@@ -116,7 +116,7 @@ class TreeNode {
 
 其中`left, right` 存储左右子节点的指针，所以二叉树的结构是这样:
 
-![二叉树基本结构](./images/binary-tree-hand-writing.jpeg)
+![二叉树基本结构](binary-tree-hand-writing.jpeg)
 
 多叉树节点的代码实现是下面这样的：
 ```java
@@ -128,7 +128,7 @@ class TreeNode {
 
 其中`children` 数组中存储指向孩子节点的指针
 
-![多叉树的结构图](./images/multi-tree-node-hand-writing.jpeg)
+![多叉树的结构图](multi-tree-node-hand-writing.jpeg)
 
 而`TrieMap` 中的树节点`TrieNode` 代码实现是这样：
 ```java
@@ -150,17 +150,17 @@ class TrieNode<V> {
 
 比如在实际做题时，题目说了只包含`a-z` ，那么你可以把大小改为26；或者不想用索引来映射，直接用哈希表`HashMap<Character, TrieNode>` 也可以，都是一样的效果。
 
-![TrieMap结构](./images/trie-map-structure.jpeg)
+![TrieMap结构](trie-map-structure.jpeg)
 
 一个节点有256个子节点指针，但大多数时候都是空，可以省略掉不画，所以一般最后可以看到这个Trie树变成了下面的样子。
 
-![实际的TrieMap样子](./images/trie-map-with-data.jpeg)
+![实际的TrieMap样子](trie-map-with-data.jpeg)
 
 这是城`TrieMap<Integer>` 中插入一些键值对后的样子，白色的节点代码`val` 字段为空，橙色节点代码`val` 字段为非空。
 
 这里我们需要注意一点的是在TrieMap 中我们的`val` 中存储在节点中的，但是对应的字符`key` 并没有实际存储，字符是通过父节点的`children` 数组中的索引确定的。
 
-![TrieMap的数据储存结构图](./images/trie-map-detail.jpeg) 
+![TrieMap的数据储存结构图](trie-map-detail.jpeg) 
 
 ## TrieMap API
 下面的这个是一般TrieMap的方法列表:
