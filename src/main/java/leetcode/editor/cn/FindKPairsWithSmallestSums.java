@@ -2,7 +2,6 @@
 package leetcode.editor.cn;
 
 import java.util.*;
-import leetcode.editor.common.*;
 
 /**
  * 给定两个以 非递减顺序排列 的整数数组 nums1 和 nums2 , 以及一个整数 k 。

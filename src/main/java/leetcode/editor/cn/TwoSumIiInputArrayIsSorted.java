@@ -2,7 +2,6 @@
 package leetcode.editor.cn;
 
 import java.util.*;
-import leetcode.editor.common.*;
 
 /**
  * 数组是升序进行排列的

@@ -1,8 +1,5 @@
 package struct.array;
 
-import java.util.Random;
-import java.util.Scanner;
-
 public class SearchBySequence {
 
     /**

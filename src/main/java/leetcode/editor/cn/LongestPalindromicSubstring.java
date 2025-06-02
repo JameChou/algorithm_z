@@ -1,9 +1,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.*;
-import leetcode.editor.common.*;
-
 public class LongestPalindromicSubstring {
 
     // leetcode submit region begin(Prohibit modification and deletion)

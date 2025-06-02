@@ -1,9 +1,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.*;
-import leetcode.editor.common.*;
-
 public class RemoveDuplicatesFromSortedArrayIi {
 
     // leetcode submit region begin(Prohibit modification and deletion)
@@ -26,5 +23,12 @@ public class RemoveDuplicatesFromSortedArrayIi {
         Solution solution = new RemoveDuplicatesFromSortedArrayIi().new Solution();
         // put your test code here
 
+        int[] nums = { 1, 1, 2, 2, 3 };
+        int arrayLength = solution.removeDuplicates(nums);
+        for (int i = 0; i < arrayLength; i++) {
+            System.out.print(nums[i] + " ");
+        }
+
+        System.out.println();
     }
 }

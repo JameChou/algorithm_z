@@ -1,9 +1,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.*;
-import leetcode.editor.common.*;
-
 /**
  * 将数组中的0元素移至末尾，其他非0元素保持相对位置
  *

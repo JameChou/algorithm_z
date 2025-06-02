@@ -1,9 +1,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.*;
-import leetcode.editor.common.*;
-
 /**
  * 125 验证回文串
  */

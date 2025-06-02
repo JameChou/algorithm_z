@@ -1,9 +1,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.*;
-import leetcode.editor.common.*;
-
 /**
  * 移除数组中所有包含 val 的元素，返回移除后的数组大小 k
  */

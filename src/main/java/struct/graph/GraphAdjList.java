@@ -2,8 +2,6 @@ package struct.graph;
 
 import java.util.Map;
 
-import struct.graph.GraphAdjMatrix;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
