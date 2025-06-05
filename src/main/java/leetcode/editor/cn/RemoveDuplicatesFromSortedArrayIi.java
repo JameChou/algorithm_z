@@ -7,6 +7,7 @@ public class RemoveDuplicatesFromSortedArrayIi {
     class Solution {
         public int removeDuplicates(int[] nums) {
             int left = 0, right = 1;
+            // TODO: 还没有解决这个问题
             int count = 1;
             while (right < nums.length) {
                 if (nums[left] == nums[right]) {

@@ -41,6 +41,7 @@ public class LinkedListCycleIi {
     public static void main(String[] args) {
         Solution solution = new LinkedListCycleIi().new Solution();
         // put your test code here
+        solution.detectCycle(null);
 
     }
 }

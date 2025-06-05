@@ -56,7 +56,6 @@ public class WeightedDigraphMatrix implements Graph {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<Edge> neighbors(int from) {
         if (from >= matrix.length || from < 0) {
             throw new IllegalArgumentException();

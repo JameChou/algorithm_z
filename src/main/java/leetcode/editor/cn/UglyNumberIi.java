@@ -14,6 +14,6 @@ public class UglyNumberIi {
     public static void main(String[] args) {
         Solution solution = new UglyNumberIi().new Solution();
         // put your test code here
-
+        solution.nthUglyNumber(2);
     }
 }
