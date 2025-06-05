@@ -18,25 +18,33 @@ public class SortColors {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public void sortColors(int[] nums) {
-            bubbleSort(nums);
-        }
-
-        public void bubbleSort(int[] nums) {
-            for (int i = 0; i < nums.length; i++) {
-                boolean hasSwap = false;
-                for (int j = 0; j < nums.length - i - 1; j++) {
-                    if (nums[j] > nums[j + 1]) {
-                        hasSwap = true;
-                        int temp = nums[j];
-                        nums[j] = nums[j + 1];
-                        nums[j + 1] = temp;
-                    }
+            // 注意区间的开闭，初始化时区间内应该没有元素
+            // 所以我们定义 [0，p0) 是元素 0 的区间，(p2, nums.length - 1] 是 2 的区间
+            int p0 = 0, p2 = nums.length - 1;
+            int p = 0;
+            // 由于 p2 是开区间，所以 p <= p2
+            while (p <= p2) {
+                if (nums[p] == 0) {
+                    swap(nums, p0, p);
+                    p0++;
+                } else if (nums[p] == 2) {
+                    swap(nums, p2, p);
+                    p2--;
+                } else if (nums[p] == 1) {
+                    p++;
                 }
 
-                if (!hasSwap) {
-                    break;
+                // 因为小于 p0 都是 0，所以 p 不要小于 p0
+                if (p < p0) {
+                    p = p0;
                 }
             }
+        }
+
+        private void swap(int[] nums, int i, int j) {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)
