@@ -2,7 +2,6 @@
 package leetcode.editor.cn;
 
 import java.util.*;
-import leetcode.editor.common.*;
 
 public class SortTheMatrixDiagonally {
 
@@ -12,7 +11,7 @@ public class SortTheMatrixDiagonally {
             int m = mat.length, n = mat[0].length;
 
             int i = 0;
-            List<List<Integer>> collection = new ArrayList<>();
+            int[][] result = new int[m][n];
             while (i < m) {
                 int idx1 = i;
                 for (int j = 0; j < (i == 0 ? n : 1); j++) {
@@ -24,35 +23,21 @@ public class SortTheMatrixDiagonally {
                         idx2++;
                     }
 
-                    idx1 = i;
-
                     Collections.sort(nums);
-                    collection.add(nums);
-                }
-
-                i++;
-            }
-
-            int[][] result = new int[m][n];
-            i = 0;
-            int listIndex = 0;
-            while (i < m) {
-                int idx1 = i;
-                for (int j = 0; j < (i == 0 ? n : 1); j++) {
-                    List<Integer> nums = collection.get(listIndex);
-                    int idx2 = j;
+                    // collection.add(nums);
+                    idx1 = i;
+                    idx2 = j;
                     for (int num : nums) {
                         result[idx1][idx2] = num;
                         idx1++;
                         idx2++;
                     }
-
                     idx1 = i;
-                    listIndex++;
                 }
 
                 i++;
             }
+
             return result;
         }
     }
