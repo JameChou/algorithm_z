@@ -2,6 +2,7 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import leetcode.editor.common.TreeNode;
@@ -18,21 +19,17 @@ public class BinaryTreePreorderTraversal {
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        List<Integer> list = new ArrayList<>();
-
-        public void traverse(TreeNode root) {
+        public List<Integer> preorderTraversal(TreeNode root) {
+            List<Integer> result = new LinkedList<>();
             if (root == null) {
-                return;
+                return result;
             }
 
-            list.add(root.val);
-            traverse(root.left);
-            traverse(root.right);
-        }
+            result.add(root.val);
+            result.addAll(preorderTraversal(root.left));
+            result.addAll(preorderTraversal(root.right));
 
-        public List<Integer> preorderTraversal(TreeNode root) {
-            traverse(root);
-            return list;
+            return result;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)
