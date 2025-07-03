@@ -265,11 +265,13 @@ var lengthOfLongestSubstring = function(s) {
 </div></div>
 </div></div>
 
-<hr /><details open hint-container details><summary style="font-size: medium"><strong>🌟🌟 算法可视化 🌟🌟</strong></summary><div id="data_longest-substring-without-repeating-characters"  category="leetcode" ></div><div class="resizable aspect-ratio-container" style="height: 100%;">
+<hr /><details open hint-container details><summary style="font-size: medium"><strong>🥳🥳 算法可视化 🥳🥳</strong></summary><div id="data_longest-substring-without-repeating-characters"  category="leetcode" ></div><div class="resizable aspect-ratio-container" style="height: 100%;">
 <div id="iframe_longest-substring-without-repeating-characters"></div></div>
 </details><hr /><br />
 
 </div>
 </details>
 </div>
+
+
 
