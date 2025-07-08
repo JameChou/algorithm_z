@@ -23,7 +23,34 @@ public class MinimumOperationsToReduceXToZero {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int minOperations(int[] nums, int x) {
-            return 0;
+            int left = 0, right = 0, n = nums.length, sum = 0;
+            // 先算得这里的所有的元素和
+            for (int s : nums) {
+                sum += s;
+            }
+
+            // 滑动窗口应该算的窗口数据
+            int target = sum - x;
+            int window = 0, maxLen = Integer.MIN_VALUE;
+            while (right < n) {
+                window += nums[right];
+                right++;
+
+                while (window > target && left < right) {
+                    window -= nums[left];
+                    left++;
+                }
+
+                // 如果这时候窗口的数据与target的时候那么表示剩下的和就与x相等
+                // 这里我们需要注意不能使用break，因为break之后可能不是最大的
+                // 我们必须使用最长的长度，因为这才能求出最短的头尾
+                if (window == target) {
+                    maxLen = Math.max(maxLen, right - left);
+                    // break;
+                }
+            }
+
+            return maxLen == Integer.MIN_VALUE ? -1 : n - maxLen;
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)
@@ -32,5 +59,14 @@ public class MinimumOperationsToReduceXToZero {
         Solution solution = new MinimumOperationsToReduceXToZero().new Solution();
         // put your test code here
 
+        int[] nums = { 1, 1, 4, 2, 3 };
+        int x = 5;
+        int result = solution.minOperations(nums, x);
+        System.out.println(result);
+
+        int[] nums2 = { 5, 2, 3, 1, 1 };
+        x = 5;
+        result = solution.minOperations(nums2, x);
+        System.out.println(result);
     }
 }

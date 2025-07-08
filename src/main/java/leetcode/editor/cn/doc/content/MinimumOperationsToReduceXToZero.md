@@ -333,11 +333,13 @@ var minOperations = function(nums, x) {
 </div></div>
 </div></div>
 
-<hr /><details open hint-container details><summary style="font-size: medium"><strong>👾👾 算法可视化 👾👾</strong></summary><div id="data_minimum-operations-to-reduce-x-to-zero"  category="leetcode" ></div><div class="resizable aspect-ratio-container" style="height: 100%;">
+<hr /><details open hint-container details><summary style="font-size: medium"><strong>🌟🌟 算法可视化 🌟🌟</strong></summary><div id="data_minimum-operations-to-reduce-x-to-zero"  category="leetcode" ></div><div class="resizable aspect-ratio-container" style="height: 100%;">
 <div id="iframe_minimum-operations-to-reduce-x-to-zero"></div></div>
 </details><hr /><br />
 
 </div>
 </details>
 </div>
+
+
 
