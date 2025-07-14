@@ -18,7 +18,6 @@ public class TreeNode {
         this.right = right;
     }
 
-
     // 按照力扣的序列化规则输入生成二叉树，返回根节点
     public static TreeNode createRoot(Integer[] nums) {
         if (nums.length == 0) {
